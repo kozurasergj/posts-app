@@ -1,12 +1,15 @@
 'use client'
 
 import { postsCollectionRef } from '@/firebase/firebase-config'
+import { useAppDispatch } from '@/hooks/useRedux'
+import { getPosts } from '@/redux/slices/postsSlice'
 import { addDoc } from 'firebase/firestore'
 import { FormEvent, useState } from 'react'
 
 const NewPost = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const dispatch = useAppDispatch()
 
   const handleAddPost = async (e: FormEvent) => {
     e.preventDefault()
@@ -22,6 +25,7 @@ const NewPost = () => {
 
     setTitle('')
     setDescription('')
+    dispatch(getPosts())
   }
   return (
     // <form classNameName='flex flex-col ' onSubmit={handleAddPost}>

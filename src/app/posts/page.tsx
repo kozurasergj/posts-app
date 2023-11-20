@@ -14,6 +14,7 @@ export default function Posts() {
   const handleRemovePost = async (postId: string) => {
     const postDoc = doc(db, 'posts', postId)
     await deleteDoc(postDoc)
+     dispatch(getPosts())
   }
 
   useEffect(() => {
