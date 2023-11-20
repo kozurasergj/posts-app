@@ -1,6 +1,5 @@
 'use client'
 import { useAppSelector } from '@/hooks/useRedux'
-import Link from 'next/link'
 
 export default function Post({ params }: { params: { id: string } }) {
   const posts = useAppSelector((state) => state.posts)
@@ -21,12 +20,6 @@ export default function Post({ params }: { params: { id: string } }) {
           <p className='text-gray-700 text-base text-center'>
             {post.description}
           </p>
-          <Link
-            href='/posts'
-            className='w-[80px] h-[40px] mt-4 hover:text-blue-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-          >
-            back
-          </Link>
         </div>
       )}
     </section>
