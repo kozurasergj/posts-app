@@ -2,7 +2,6 @@
 
 import { postsCollectionRef } from '@/firebase/firebase-config'
 import { useAppDispatch } from '@/hooks/useRedux'
-import { getPosts } from '@/redux/slices/postsSlice'
 import { addDoc } from 'firebase/firestore'
 import { FormEvent, useState } from 'react'
 
@@ -25,27 +24,9 @@ const NewPost = () => {
 
     setTitle('')
     setDescription('')
-    dispatch(getPosts())
+    window.location.reload()
   }
   return (
-    // <form classNameName='flex flex-col ' onSubmit={handleAddPost}>
-    //   <input
-    //     type='text'
-    //     classNameName=''
-    //     placeholder='Title'
-    //     value={title}
-    //     onChange={(e) => setTitle(e.target.value)}
-    //   />
-    //   <textarea
-    //     placeholder='Description'
-    //     value={description}
-    //     classNameName=''
-    //     onChange={(e) => setDescription(e.target.value)}
-    //   ></textarea>
-    //   <button classNameName=' rounded-md w-[140px] h-[30px] px-2 py-4 mb-5' onClick={handleAddPost}>
-    //     Add New Post
-    //   </button>
-    // </form>
     <div className='w-full max-w-xs mx-auto'>
       <form
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
