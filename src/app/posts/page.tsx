@@ -3,7 +3,6 @@ import { db } from '@/firebase/firebase-config'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { PostType, getPosts } from '@/redux/slices/postsSlice'
 import { deleteDoc, doc } from 'firebase/firestore'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import NewPost from '../components/NewPost'
 
@@ -38,12 +37,12 @@ export default function Posts() {
               >
                 Delete
               </button>
-              <Link
+              <a
                 href={`/posts/${post.id}`}
                 className='w-[80px] h-[40px]  hover:text-blue-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               >
                 More
-              </Link>
+              </a>
             </div>
           ))
         ) : (
