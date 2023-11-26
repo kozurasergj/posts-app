@@ -19,7 +19,7 @@ export default function Posts() {
 
   useEffect(() => {
     dispatch(getPosts())
-  }, [])
+  }, [posts])
 
   return (
     <div>

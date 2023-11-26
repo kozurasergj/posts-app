@@ -29,7 +29,7 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getPosts.fulfilled, (state, action) => {
-      return [...state, ...(action.payload as PostType[])]
+      return [...(action.payload as PostType[])]
     })
   },
 })

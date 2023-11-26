@@ -1,8 +1,9 @@
-'use client'
-
 import { postsCollectionRef } from '@/firebase/firebase-config'
 import { useAppDispatch } from '@/hooks/useRedux'
+import { getPosts } from '@/redux/slices/postsSlice'
 import { addDoc } from 'firebase/firestore'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/dist/server/api-utils'
 import { FormEvent, useState } from 'react'
 
 const NewPost = () => {
@@ -24,7 +25,6 @@ const NewPost = () => {
 
     setTitle('')
     setDescription('')
-    window.location.reload()
   }
   return (
     <div className='w-full max-w-xs mx-auto'>
