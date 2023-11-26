@@ -29,7 +29,7 @@ const NewPost = () => {
   return (
     <div className='w-full max-w-xs mx-auto'>
       <form
-        className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
+        className='bg-gray-400 shadow-md rounded px-8 pt-6 pb-8 mb-4'
         onSubmit={handleAddPost}
       >
         <div className='mb-4'>
