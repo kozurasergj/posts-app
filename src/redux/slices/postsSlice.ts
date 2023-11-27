@@ -3,12 +3,22 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getDocs } from 'firebase/firestore'
 
 export const getPosts = createAsyncThunk('posts/getPosts', async () => {
-  const data = await getDocs(postsCollectionRef)
-  const posts = data.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }))
-  return posts
+  try {
+    const data = await getDocs(postsCollectionRef)
+    const posts = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }))
+    return posts
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error adding post:', error.message)
+      throw error
+    } else {
+      console.error('Non-Error object thrown:', error)
+      throw error
+    }
+  }
 })
 
 export interface PostType {

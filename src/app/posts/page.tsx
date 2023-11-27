@@ -5,14 +5,23 @@ import { PostType, getPosts } from '@/redux/slices/postsSlice'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { useEffect } from 'react'
 import NewPost from '../components/NewPost'
-
+import  Link from 'next/link'
+ 
 export default function Posts() {
   const posts = useAppSelector((state) => state.posts)
   const dispatch = useAppDispatch()
 
   const handleRemovePost = async (postId: string) => {
     const postDoc = doc(db, 'posts', postId)
-    await deleteDoc(postDoc)
+    try {
+      await deleteDoc(postDoc)
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error adding post:', error.message)
+      } else {
+        console.error('Non-Error object thrown:', error)
+      }
+    }
   }
 
   useEffect(() => {
@@ -37,12 +46,12 @@ export default function Posts() {
               >
                 Delete
               </button>
-              <a
+              <Link
                 href={`/posts/${post.id}`}
                 className='w-[80px] h-[40px]  hover:text-blue-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               >
                 More
-              </a>
+              </Link>
             </div>
           ))
         ) : (

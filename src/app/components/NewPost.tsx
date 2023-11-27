@@ -10,7 +10,6 @@ const NewPost = () => {
 
   const handleAddPost = async (e: FormEvent) => {
     e.preventDefault()
-
     if (!title && !description) return
 
     const newPost = {
@@ -18,11 +17,19 @@ const NewPost = () => {
       description,
     }
 
-    await addDoc(postsCollectionRef, newPost)
-
-    setTitle('')
-    setDescription('')
+    try {
+      await addDoc(postsCollectionRef, newPost)
+      setTitle('')
+      setDescription('')
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error adding post:', error.message)
+      } else {
+        console.error('Non-Error object thrown:', error)
+      }
+    }
   }
+
   return (
     <div className='w-full max-w-xs mx-auto'>
       <form
